@@ -1,6 +1,6 @@
 import {EvmBatchProcessor, BatchHandlerContext} from '@subsquid/evm-processor'
 import {lookupArchive} from '@subsquid/archive-registry'
-import {perpsV2Markets, perpsV2MarketSettings, futuresMarketManger} from './mapping'
+import {perpsV2Markets, perpsV2MarketSettings, FuturesMarketManager} from './mapping'
 import {db, Store} from './db'
 import {EntityBuffer} from './entityBuffer'
 import {Block, Transaction} from './model'
@@ -149,16 +149,16 @@ processor.addTransaction(perpsV2MarketSettingsAddresses, {
         },
     } as const,
 })
-processor.addLog(futuresMarketManger.address, {
+processor.addLog(FuturesMarketManager.address, {
     filter: [
         [
-            futuresMarketManger.spec.events['CacheUpdated'].topic,
-            futuresMarketManger.spec.events['EndorsedAddressAdded'].topic,
-            futuresMarketManger.spec.events['EndorsedAddressRemoved'].topic,
-            futuresMarketManger.spec.events['MarketAdded'].topic,
-            futuresMarketManger.spec.events['MarketRemoved'].topic,
-            futuresMarketManger.spec.events['OwnerChanged'].topic,
-            futuresMarketManger.spec.events['OwnerNominated'].topic,
+            FuturesMarketManager.spec.events['CacheUpdated'].topic,
+            FuturesMarketManager.spec.events['EndorsedAddressAdded'].topic,
+            FuturesMarketManager.spec.events['EndorsedAddressRemoved'].topic,
+            FuturesMarketManager.spec.events['MarketAdded'].topic,
+            FuturesMarketManager.spec.events['MarketRemoved'].topic,
+            FuturesMarketManager.spec.events['OwnerChanged'].topic,
+            FuturesMarketManager.spec.events['OwnerNominated'].topic,
         ],
     ],
     data: {
@@ -172,22 +172,22 @@ processor.addLog(futuresMarketManger.address, {
         },
     } as const,
 })
-processor.addTransaction(futuresMarketManger.address, {
+processor.addTransaction(FuturesMarketManager.address, {
     sighash: [
-        futuresMarketManger.spec.functions['acceptOwnership'].sighash,
-        futuresMarketManger.spec.functions['addEndorsedAddresses'].sighash,
-        futuresMarketManger.spec.functions['addMarkets'].sighash,
-        futuresMarketManger.spec.functions['addProxiedMarkets'].sighash,
-        futuresMarketManger.spec.functions['burnSUSD'].sighash,
-        futuresMarketManger.spec.functions['issueSUSD'].sighash,
-        futuresMarketManger.spec.functions['nominateNewOwner'].sighash,
-        futuresMarketManger.spec.functions['payFee(uint256,bytes32)'].sighash,
-        futuresMarketManger.spec.functions['payFee(uint256)'].sighash,
-        futuresMarketManger.spec.functions['rebuildCache'].sighash,
-        futuresMarketManger.spec.functions['removeEndorsedAddresses'].sighash,
-        futuresMarketManger.spec.functions['removeMarkets'].sighash,
-        futuresMarketManger.spec.functions['removeMarketsByKey'].sighash,
-        futuresMarketManger.spec.functions['updateMarketsImplementations'].sighash,
+        FuturesMarketManager.spec.functions['acceptOwnership'].sighash,
+        FuturesMarketManager.spec.functions['addEndorsedAddresses'].sighash,
+        FuturesMarketManager.spec.functions['addMarkets'].sighash,
+        FuturesMarketManager.spec.functions['addProxiedMarkets'].sighash,
+        FuturesMarketManager.spec.functions['burnSUSD'].sighash,
+        FuturesMarketManager.spec.functions['issueSUSD'].sighash,
+        FuturesMarketManager.spec.functions['nominateNewOwner'].sighash,
+        FuturesMarketManager.spec.functions['payFee(uint256,bytes32)'].sighash,
+        FuturesMarketManager.spec.functions['payFee(uint256)'].sighash,
+        FuturesMarketManager.spec.functions['rebuildCache'].sighash,
+        FuturesMarketManager.spec.functions['removeEndorsedAddresses'].sighash,
+        FuturesMarketManager.spec.functions['removeMarkets'].sighash,
+        FuturesMarketManager.spec.functions['removeMarketsByKey'].sighash,
+        FuturesMarketManager.spec.functions['updateMarketsImplementations'].sighash,
     ],
     data: {
         transaction: {
@@ -233,8 +233,8 @@ processor.run(db, async (ctx: BatchHandlerContext<Store, any>) => {
                 perpsV2MarketSettings.parse(ctx, block, item)
             }
 
-            if (item.address === futuresMarketManger.address) {
-                futuresMarketManger.parse(ctx, block, item)
+            if (item.address === FuturesMarketManager.address) {
+                FuturesMarketManager.parse(ctx, block, item)
             }
         }
     }

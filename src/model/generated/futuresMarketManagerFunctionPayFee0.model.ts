@@ -2,8 +2,8 @@ import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, I
 import * as marshal from "./marshal"
 
 @Entity_()
-export class FuturesMarketMangerFunctionRemoveMarketsByKey {
-    constructor(props?: Partial<FuturesMarketMangerFunctionRemoveMarketsByKey>) {
+export class FuturesMarketManagerFunctionPayFee0 {
+    constructor(props?: Partial<FuturesMarketManagerFunctionPayFee0>) {
         Object.assign(this, props)
     }
 
@@ -37,6 +37,9 @@ export class FuturesMarketMangerFunctionRemoveMarketsByKey {
     @Column_("bool", {nullable: true})
     functionSuccess!: boolean | undefined | null
 
-    @Column_("jsonb", {nullable: false})
-    marketKeysToRemove!: unknown
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
+    amount!: bigint
+
+    @Column_("text", {nullable: false})
+    trackingCode!: string
 }

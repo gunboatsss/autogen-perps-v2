@@ -16,7 +16,7 @@ contracts:
       from: 52456606
     functions: true
     events: true
-  - name: FuturesMarketManger
+  - name: FuturesMarketManager
     address: "0xd30bdFd7e7a65fE109D5dE1D4e95F3B800FB7463"
     abi: "./abi/FuturesMarketManager.json"
     range:

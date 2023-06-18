@@ -2,8 +2,8 @@ import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, I
 import * as marshal from "./marshal"
 
 @Entity_()
-export class FuturesMarketMangerFunctionNominateNewOwner {
-    constructor(props?: Partial<FuturesMarketMangerFunctionNominateNewOwner>) {
+export class FuturesMarketManagerFunctionAcceptOwnership {
+    constructor(props?: Partial<FuturesMarketManagerFunctionAcceptOwnership>) {
         Object.assign(this, props)
     }
 
@@ -36,7 +36,4 @@ export class FuturesMarketMangerFunctionNominateNewOwner {
     @Index_()
     @Column_("bool", {nullable: true})
     functionSuccess!: boolean | undefined | null
-
-    @Column_("text", {nullable: false})
-    owner!: string
 }

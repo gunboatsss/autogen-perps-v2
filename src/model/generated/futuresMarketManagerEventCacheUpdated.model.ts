@@ -1,9 +1,8 @@
 import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, Index as Index_} from "typeorm"
-import * as marshal from "./marshal"
 
 @Entity_()
-export class FuturesMarketMangerFunctionPayFee0 {
-    constructor(props?: Partial<FuturesMarketMangerFunctionPayFee0>) {
+export class FuturesMarketManagerEventCacheUpdated {
+    constructor(props?: Partial<FuturesMarketManagerEventCacheUpdated>) {
         Object.assign(this, props)
     }
 
@@ -28,18 +27,11 @@ export class FuturesMarketMangerFunctionPayFee0 {
 
     @Index_()
     @Column_("text", {nullable: false})
-    functionName!: string
-
-    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
-    functionValue!: bigint | undefined | null
-
-    @Index_()
-    @Column_("bool", {nullable: true})
-    functionSuccess!: boolean | undefined | null
-
-    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
-    amount!: bigint
+    eventName!: string
 
     @Column_("text", {nullable: false})
-    trackingCode!: string
+    name!: string
+
+    @Column_("text", {nullable: false})
+    destination!: string
 }

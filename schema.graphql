@@ -930,7 +930,7 @@ type PerpsV2MarketSettingsFunctionSetTakerFeeOffchainDelay @entity {
     takerFeeOffchainDelayedOrder: BigInt!
 }
 
-type FuturesMarketMangerEventCacheUpdated @entity {
+type FuturesMarketManagerEventCacheUpdated @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -941,7 +941,7 @@ type FuturesMarketMangerEventCacheUpdated @entity {
     destination: String!
 }
 
-type FuturesMarketMangerEventEndorsedAddressAdded @entity {
+type FuturesMarketManagerEventEndorsedAddressAdded @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -951,7 +951,7 @@ type FuturesMarketMangerEventEndorsedAddressAdded @entity {
     endorsedAddress: String!
 }
 
-type FuturesMarketMangerEventEndorsedAddressRemoved @entity {
+type FuturesMarketManagerEventEndorsedAddressRemoved @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -961,7 +961,7 @@ type FuturesMarketMangerEventEndorsedAddressRemoved @entity {
     endorsedAddress: String!
 }
 
-type FuturesMarketMangerEventMarketAdded @entity {
+type FuturesMarketManagerEventMarketAdded @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -973,7 +973,7 @@ type FuturesMarketMangerEventMarketAdded @entity {
     marketKey: String! @index
 }
 
-type FuturesMarketMangerEventMarketRemoved @entity {
+type FuturesMarketManagerEventMarketRemoved @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -985,7 +985,7 @@ type FuturesMarketMangerEventMarketRemoved @entity {
     marketKey: String! @index
 }
 
-type FuturesMarketMangerEventOwnerChanged @entity {
+type FuturesMarketManagerEventOwnerChanged @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -996,7 +996,7 @@ type FuturesMarketMangerEventOwnerChanged @entity {
     newOwner: String!
 }
 
-type FuturesMarketMangerEventOwnerNominated @entity {
+type FuturesMarketManagerEventOwnerNominated @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1006,7 +1006,7 @@ type FuturesMarketMangerEventOwnerNominated @entity {
     newOwner: String!
 }
 
-type FuturesMarketMangerFunctionAcceptOwnership @entity {
+type FuturesMarketManagerFunctionAcceptOwnership @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1017,7 +1017,7 @@ type FuturesMarketMangerFunctionAcceptOwnership @entity {
     functionSuccess: Boolean @index
 }
 
-type FuturesMarketMangerFunctionAddEndorsedAddresses @entity {
+type FuturesMarketManagerFunctionAddEndorsedAddresses @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1029,7 +1029,7 @@ type FuturesMarketMangerFunctionAddEndorsedAddresses @entity {
     addresses: JSON!
 }
 
-type FuturesMarketMangerFunctionAddMarkets @entity {
+type FuturesMarketManagerFunctionAddMarkets @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1041,7 +1041,7 @@ type FuturesMarketMangerFunctionAddMarkets @entity {
     marketsToAdd: JSON!
 }
 
-type FuturesMarketMangerFunctionAddProxiedMarkets @entity {
+type FuturesMarketManagerFunctionAddProxiedMarkets @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1053,7 +1053,7 @@ type FuturesMarketMangerFunctionAddProxiedMarkets @entity {
     marketsToAdd: JSON!
 }
 
-type FuturesMarketMangerFunctionBurnSusd @entity {
+type FuturesMarketManagerFunctionBurnSusd @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1066,7 +1066,7 @@ type FuturesMarketMangerFunctionBurnSusd @entity {
     amount: BigInt!
 }
 
-type FuturesMarketMangerFunctionIssueSusd @entity {
+type FuturesMarketManagerFunctionIssueSusd @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1079,7 +1079,7 @@ type FuturesMarketMangerFunctionIssueSusd @entity {
     amount: BigInt!
 }
 
-type FuturesMarketMangerFunctionNominateNewOwner @entity {
+type FuturesMarketManagerFunctionNominateNewOwner @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1091,7 +1091,7 @@ type FuturesMarketMangerFunctionNominateNewOwner @entity {
     owner: String!
 }
 
-type FuturesMarketMangerFunctionPayFee0 @entity {
+type FuturesMarketManagerFunctionPayFee0 @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1104,7 +1104,7 @@ type FuturesMarketMangerFunctionPayFee0 @entity {
     trackingCode: String!
 }
 
-type FuturesMarketMangerFunctionPayFee1 @entity {
+type FuturesMarketManagerFunctionPayFee1 @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1116,7 +1116,7 @@ type FuturesMarketMangerFunctionPayFee1 @entity {
     amount: BigInt!
 }
 
-type FuturesMarketMangerFunctionRebuildCache @entity {
+type FuturesMarketManagerFunctionRebuildCache @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1127,7 +1127,7 @@ type FuturesMarketMangerFunctionRebuildCache @entity {
     functionSuccess: Boolean @index
 }
 
-type FuturesMarketMangerFunctionRemoveEndorsedAddresses @entity {
+type FuturesMarketManagerFunctionRemoveEndorsedAddresses @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1139,7 +1139,7 @@ type FuturesMarketMangerFunctionRemoveEndorsedAddresses @entity {
     addresses: JSON!
 }
 
-type FuturesMarketMangerFunctionRemoveMarkets @entity {
+type FuturesMarketManagerFunctionRemoveMarkets @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1151,7 +1151,7 @@ type FuturesMarketMangerFunctionRemoveMarkets @entity {
     marketsToRemove: JSON!
 }
 
-type FuturesMarketMangerFunctionRemoveMarketsByKey @entity {
+type FuturesMarketManagerFunctionRemoveMarketsByKey @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index
@@ -1163,7 +1163,7 @@ type FuturesMarketMangerFunctionRemoveMarketsByKey @entity {
     marketKeysToRemove: JSON!
 }
 
-type FuturesMarketMangerFunctionUpdateMarketsImplementations @entity {
+type FuturesMarketManagerFunctionUpdateMarketsImplementations @entity {
     id: ID!
     blockNumber: Int! @index
     blockTimestamp: DateTime! @index

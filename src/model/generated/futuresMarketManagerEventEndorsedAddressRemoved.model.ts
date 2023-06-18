@@ -1,8 +1,8 @@
 import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, Index as Index_} from "typeorm"
 
 @Entity_()
-export class FuturesMarketMangerEventMarketAdded {
-    constructor(props?: Partial<FuturesMarketMangerEventMarketAdded>) {
+export class FuturesMarketManagerEventEndorsedAddressRemoved {
+    constructor(props?: Partial<FuturesMarketManagerEventEndorsedAddressRemoved>) {
         Object.assign(this, props)
     }
 
@@ -30,13 +30,5 @@ export class FuturesMarketMangerEventMarketAdded {
     eventName!: string
 
     @Column_("text", {nullable: false})
-    market!: string
-
-    @Index_()
-    @Column_("text", {nullable: false})
-    asset!: string
-
-    @Index_()
-    @Column_("text", {nullable: false})
-    marketKey!: string
+    endorsedAddress!: string
 }

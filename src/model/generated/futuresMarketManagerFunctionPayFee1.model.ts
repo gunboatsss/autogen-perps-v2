@@ -2,8 +2,8 @@ import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, I
 import * as marshal from "./marshal"
 
 @Entity_()
-export class FuturesMarketMangerFunctionPayFee1 {
-    constructor(props?: Partial<FuturesMarketMangerFunctionPayFee1>) {
+export class FuturesMarketManagerFunctionPayFee1 {
+    constructor(props?: Partial<FuturesMarketManagerFunctionPayFee1>) {
         Object.assign(this, props)
     }
 

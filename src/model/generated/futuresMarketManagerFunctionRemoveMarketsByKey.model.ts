@@ -1,8 +1,9 @@
 import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, Index as Index_} from "typeorm"
+import * as marshal from "./marshal"
 
 @Entity_()
-export class FuturesMarketMangerEventOwnerNominated {
-    constructor(props?: Partial<FuturesMarketMangerEventOwnerNominated>) {
+export class FuturesMarketManagerFunctionRemoveMarketsByKey {
+    constructor(props?: Partial<FuturesMarketManagerFunctionRemoveMarketsByKey>) {
         Object.assign(this, props)
     }
 
@@ -27,8 +28,15 @@ export class FuturesMarketMangerEventOwnerNominated {
 
     @Index_()
     @Column_("text", {nullable: false})
-    eventName!: string
+    functionName!: string
 
-    @Column_("text", {nullable: false})
-    newOwner!: string
+    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: true})
+    functionValue!: bigint | undefined | null
+
+    @Index_()
+    @Column_("bool", {nullable: true})
+    functionSuccess!: boolean | undefined | null
+
+    @Column_("jsonb", {nullable: false})
+    marketKeysToRemove!: unknown
 }

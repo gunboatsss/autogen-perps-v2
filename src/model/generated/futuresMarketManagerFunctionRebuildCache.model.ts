@@ -2,8 +2,8 @@ import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, I
 import * as marshal from "./marshal"
 
 @Entity_()
-export class FuturesMarketMangerFunctionIssueSusd {
-    constructor(props?: Partial<FuturesMarketMangerFunctionIssueSusd>) {
+export class FuturesMarketManagerFunctionRebuildCache {
+    constructor(props?: Partial<FuturesMarketManagerFunctionRebuildCache>) {
         Object.assign(this, props)
     }
 
@@ -36,10 +36,4 @@ export class FuturesMarketMangerFunctionIssueSusd {
     @Index_()
     @Column_("bool", {nullable: true})
     functionSuccess!: boolean | undefined | null
-
-    @Column_("text", {nullable: false})
-    account!: string
-
-    @Column_("numeric", {transformer: marshal.bigintTransformer, nullable: false})
-    amount!: bigint
 }

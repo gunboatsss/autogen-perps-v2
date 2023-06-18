@@ -3,7 +3,7 @@ import {LogItem, TransactionItem} from '@subsquid/evm-processor/lib/interfaces/d
 import {toJSON} from '@subsquid/util-internal-json'
 import {Store} from '../db'
 import {EntityBuffer} from '../entityBuffer'
-import {FuturesMarketMangerEventCacheUpdated, FuturesMarketMangerEventEndorsedAddressAdded, FuturesMarketMangerEventEndorsedAddressRemoved, FuturesMarketMangerEventMarketAdded, FuturesMarketMangerEventMarketRemoved, FuturesMarketMangerEventOwnerChanged, FuturesMarketMangerEventOwnerNominated, FuturesMarketMangerFunctionAcceptOwnership, FuturesMarketMangerFunctionAddEndorsedAddresses, FuturesMarketMangerFunctionAddMarkets, FuturesMarketMangerFunctionAddProxiedMarkets, FuturesMarketMangerFunctionBurnSusd, FuturesMarketMangerFunctionIssueSusd, FuturesMarketMangerFunctionNominateNewOwner, FuturesMarketMangerFunctionPayFee0, FuturesMarketMangerFunctionPayFee1, FuturesMarketMangerFunctionRebuildCache, FuturesMarketMangerFunctionRemoveEndorsedAddresses, FuturesMarketMangerFunctionRemoveMarkets, FuturesMarketMangerFunctionRemoveMarketsByKey, FuturesMarketMangerFunctionUpdateMarketsImplementations} from '../model'
+import {FuturesMarketManagerEventCacheUpdated, FuturesMarketManagerEventEndorsedAddressAdded, FuturesMarketManagerEventEndorsedAddressRemoved, FuturesMarketManagerEventMarketAdded, FuturesMarketManagerEventMarketRemoved, FuturesMarketManagerEventOwnerChanged, FuturesMarketManagerEventOwnerNominated, FuturesMarketManagerFunctionAcceptOwnership, FuturesMarketManagerFunctionAddEndorsedAddresses, FuturesMarketManagerFunctionAddMarkets, FuturesMarketManagerFunctionAddProxiedMarkets, FuturesMarketManagerFunctionBurnSusd, FuturesMarketManagerFunctionIssueSusd, FuturesMarketManagerFunctionNominateNewOwner, FuturesMarketManagerFunctionPayFee0, FuturesMarketManagerFunctionPayFee1, FuturesMarketManagerFunctionRebuildCache, FuturesMarketManagerFunctionRemoveEndorsedAddresses, FuturesMarketManagerFunctionRemoveMarkets, FuturesMarketManagerFunctionRemoveMarketsByKey, FuturesMarketManagerFunctionUpdateMarketsImplementations} from '../model'
 import * as spec from '../abi/FuturesMarketManager'
 import {normalize} from '../util'
 
@@ -29,7 +29,7 @@ function parseEvent(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: Eve
             case spec.events['CacheUpdated'].topic: {
                 let e = normalize(spec.events['CacheUpdated'].decode(item.evmLog))
                 EntityBuffer.add(
-                    new FuturesMarketMangerEventCacheUpdated({
+                    new FuturesMarketManagerEventCacheUpdated({
                         id: item.evmLog.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -45,7 +45,7 @@ function parseEvent(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: Eve
             case spec.events['EndorsedAddressAdded'].topic: {
                 let e = normalize(spec.events['EndorsedAddressAdded'].decode(item.evmLog))
                 EntityBuffer.add(
-                    new FuturesMarketMangerEventEndorsedAddressAdded({
+                    new FuturesMarketManagerEventEndorsedAddressAdded({
                         id: item.evmLog.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -60,7 +60,7 @@ function parseEvent(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: Eve
             case spec.events['EndorsedAddressRemoved'].topic: {
                 let e = normalize(spec.events['EndorsedAddressRemoved'].decode(item.evmLog))
                 EntityBuffer.add(
-                    new FuturesMarketMangerEventEndorsedAddressRemoved({
+                    new FuturesMarketManagerEventEndorsedAddressRemoved({
                         id: item.evmLog.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -75,7 +75,7 @@ function parseEvent(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: Eve
             case spec.events['MarketAdded'].topic: {
                 let e = normalize(spec.events['MarketAdded'].decode(item.evmLog))
                 EntityBuffer.add(
-                    new FuturesMarketMangerEventMarketAdded({
+                    new FuturesMarketManagerEventMarketAdded({
                         id: item.evmLog.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -92,7 +92,7 @@ function parseEvent(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: Eve
             case spec.events['MarketRemoved'].topic: {
                 let e = normalize(spec.events['MarketRemoved'].decode(item.evmLog))
                 EntityBuffer.add(
-                    new FuturesMarketMangerEventMarketRemoved({
+                    new FuturesMarketManagerEventMarketRemoved({
                         id: item.evmLog.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -109,7 +109,7 @@ function parseEvent(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: Eve
             case spec.events['OwnerChanged'].topic: {
                 let e = normalize(spec.events['OwnerChanged'].decode(item.evmLog))
                 EntityBuffer.add(
-                    new FuturesMarketMangerEventOwnerChanged({
+                    new FuturesMarketManagerEventOwnerChanged({
                         id: item.evmLog.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -125,7 +125,7 @@ function parseEvent(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: Eve
             case spec.events['OwnerNominated'].topic: {
                 let e = normalize(spec.events['OwnerNominated'].decode(item.evmLog))
                 EntityBuffer.add(
-                    new FuturesMarketMangerEventOwnerNominated({
+                    new FuturesMarketManagerEventOwnerNominated({
                         id: item.evmLog.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -150,7 +150,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['acceptOwnership'].sighash: {
                 let f = normalize(spec.functions['acceptOwnership'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionAcceptOwnership({
+                    new FuturesMarketManagerFunctionAcceptOwnership({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -166,7 +166,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['addEndorsedAddresses'].sighash: {
                 let f = normalize(spec.functions['addEndorsedAddresses'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionAddEndorsedAddresses({
+                    new FuturesMarketManagerFunctionAddEndorsedAddresses({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -183,7 +183,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['addMarkets'].sighash: {
                 let f = normalize(spec.functions['addMarkets'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionAddMarkets({
+                    new FuturesMarketManagerFunctionAddMarkets({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -200,7 +200,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['addProxiedMarkets'].sighash: {
                 let f = normalize(spec.functions['addProxiedMarkets'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionAddProxiedMarkets({
+                    new FuturesMarketManagerFunctionAddProxiedMarkets({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -217,7 +217,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['burnSUSD'].sighash: {
                 let f = normalize(spec.functions['burnSUSD'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionBurnSusd({
+                    new FuturesMarketManagerFunctionBurnSusd({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -235,7 +235,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['issueSUSD'].sighash: {
                 let f = normalize(spec.functions['issueSUSD'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionIssueSusd({
+                    new FuturesMarketManagerFunctionIssueSusd({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -253,7 +253,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['nominateNewOwner'].sighash: {
                 let f = normalize(spec.functions['nominateNewOwner'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionNominateNewOwner({
+                    new FuturesMarketManagerFunctionNominateNewOwner({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -270,7 +270,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['payFee(uint256,bytes32)'].sighash: {
                 let f = normalize(spec.functions['payFee(uint256,bytes32)'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionPayFee0({
+                    new FuturesMarketManagerFunctionPayFee0({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -288,7 +288,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['payFee(uint256)'].sighash: {
                 let f = normalize(spec.functions['payFee(uint256)'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionPayFee1({
+                    new FuturesMarketManagerFunctionPayFee1({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -305,7 +305,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['rebuildCache'].sighash: {
                 let f = normalize(spec.functions['rebuildCache'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionRebuildCache({
+                    new FuturesMarketManagerFunctionRebuildCache({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -321,7 +321,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['removeEndorsedAddresses'].sighash: {
                 let f = normalize(spec.functions['removeEndorsedAddresses'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionRemoveEndorsedAddresses({
+                    new FuturesMarketManagerFunctionRemoveEndorsedAddresses({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -338,7 +338,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['removeMarkets'].sighash: {
                 let f = normalize(spec.functions['removeMarkets'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionRemoveMarkets({
+                    new FuturesMarketManagerFunctionRemoveMarkets({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -355,7 +355,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['removeMarketsByKey'].sighash: {
                 let f = normalize(spec.functions['removeMarketsByKey'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionRemoveMarketsByKey({
+                    new FuturesMarketManagerFunctionRemoveMarketsByKey({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),
@@ -372,7 +372,7 @@ function parseFunction(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: 
             case spec.functions['updateMarketsImplementations'].sighash: {
                 let f = normalize(spec.functions['updateMarketsImplementations'].decode(item.transaction.input))
                 EntityBuffer.add(
-                    new FuturesMarketMangerFunctionUpdateMarketsImplementations({
+                    new FuturesMarketManagerFunctionUpdateMarketsImplementations({
                         id: item.transaction.id,
                         blockNumber: block.height,
                         blockTimestamp: new Date(block.timestamp),

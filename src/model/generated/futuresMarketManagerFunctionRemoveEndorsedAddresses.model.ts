@@ -2,8 +2,8 @@ import {Entity as Entity_, Column as Column_, PrimaryColumn as PrimaryColumn_, I
 import * as marshal from "./marshal"
 
 @Entity_()
-export class FuturesMarketMangerFunctionRebuildCache {
-    constructor(props?: Partial<FuturesMarketMangerFunctionRebuildCache>) {
+export class FuturesMarketManagerFunctionRemoveEndorsedAddresses {
+    constructor(props?: Partial<FuturesMarketManagerFunctionRemoveEndorsedAddresses>) {
         Object.assign(this, props)
     }
 
@@ -36,4 +36,7 @@ export class FuturesMarketMangerFunctionRebuildCache {
     @Index_()
     @Column_("bool", {nullable: true})
     functionSuccess!: boolean | undefined | null
+
+    @Column_("jsonb", {nullable: false})
+    addresses!: unknown
 }

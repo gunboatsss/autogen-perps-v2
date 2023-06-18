@@ -1,0 +1,1177 @@
+type Block @entity {
+    id: ID!
+    number: Int! @index
+    timestamp: DateTime! @index
+}
+
+type Transaction @entity {
+    id: ID!
+    blockNumber: Int @index
+    blockTimestamp: DateTime! @index
+    hash: String! @index
+    to: String @index
+    from: String @index
+    success: Boolean @index
+}
+
+type PerpsV2MarketsEventDelayedOrderRemoved @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    account: String! @index
+    isOffchain: Boolean!
+    currentRoundId: BigInt!
+    sizeDelta: BigInt!
+    targetRoundId: BigInt!
+    commitDeposit: BigInt!
+    keeperDeposit: BigInt!
+    trackingCode: String!
+}
+
+type PerpsV2MarketsEventDelayedOrderSubmitted @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    account: String! @index
+    isOffchain: Boolean!
+    sizeDelta: BigInt!
+    targetRoundId: BigInt!
+    intentionTime: BigInt!
+    executableAtTime: BigInt!
+    commitDeposit: BigInt!
+    keeperDeposit: BigInt!
+    trackingCode: String!
+}
+
+type PerpsV2MarketsEventFundingRecomputed @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    funding: BigInt!
+    fundingRate: BigInt!
+    index: BigInt!
+    timestamp: BigInt!
+}
+
+type PerpsV2MarketsEventMarginTransferred @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    account: String! @index
+    marginDelta: BigInt!
+}
+
+type PerpsV2MarketsEventPerpsTracking @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    trackingCode: String! @index
+    baseAsset: String!
+    marketKey: String!
+    sizeDelta: BigInt!
+    fee: BigInt!
+}
+
+type PerpsV2MarketsEventPositionFlagged @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    id0: BigInt!
+    account: String!
+    flagger: String!
+    timestamp: BigInt!
+}
+
+type PerpsV2MarketsEventPositionLiquidated0 @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    id0: BigInt!
+    account: String!
+    liquidator: String!
+    size: BigInt!
+    price: BigInt!
+    flaggerFee: BigInt!
+    liquidatorFee: BigInt!
+    stakersFee: BigInt!
+}
+
+type PerpsV2MarketsEventPositionLiquidated1 @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    id0: BigInt!
+    account: String!
+    liquidator: String!
+    size: BigInt!
+    price: BigInt!
+    fee: BigInt!
+}
+
+type PerpsV2MarketsEventPositionModified0 @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    id0: BigInt! @index
+    account: String! @index
+    margin: BigInt!
+    size: BigInt!
+    tradeSize: BigInt!
+    lastPrice: BigInt!
+    fundingIndex: BigInt!
+    fee: BigInt!
+    skew: BigInt!
+}
+
+type PerpsV2MarketsEventPositionModified1 @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    id0: BigInt! @index
+    account: String! @index
+    margin: BigInt!
+    size: BigInt!
+    tradeSize: BigInt!
+    lastPrice: BigInt!
+    fundingIndex: BigInt!
+    fee: BigInt!
+}
+
+type PerpsV2MarketsFunctionCancelDelayedOrder @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    account: String!
+}
+
+type PerpsV2MarketsFunctionCancelOffchainDelayedOrder @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    account: String!
+}
+
+type PerpsV2MarketsFunctionClosePosition @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    desiredFillPrice: BigInt!
+}
+
+type PerpsV2MarketsFunctionClosePositionWithTracking @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    desiredFillPrice: BigInt!
+    trackingCode: String!
+}
+
+type PerpsV2MarketsFunctionExecuteDelayedOrder @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    account: String!
+}
+
+type PerpsV2MarketsFunctionExecuteOffchainDelayedOrder @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    account: String!
+    priceUpdateData: JSON!
+}
+
+type PerpsV2MarketsFunctionFlagPosition @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    account: String!
+}
+
+type PerpsV2MarketsFunctionForceLiquidatePosition @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    account: String!
+}
+
+type PerpsV2MarketsFunctionLiquidatePosition @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    account: String!
+}
+
+type PerpsV2MarketsFunctionModifyPosition @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    sizeDelta: BigInt!
+    desiredFillPrice: BigInt!
+}
+
+type PerpsV2MarketsFunctionModifyPositionWithTracking @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    sizeDelta: BigInt!
+    desiredFillPrice: BigInt!
+    trackingCode: String!
+}
+
+type PerpsV2MarketsFunctionRecomputeFunding @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+}
+
+type PerpsV2MarketsFunctionSubmitCloseDelayedOrderWithTrac @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    desiredTimeDelta: BigInt!
+    desiredFillPrice: BigInt!
+    trackingCode: String!
+}
+
+type PerpsV2MarketsFunctionSubmitCloseOffchainDelayedOrder @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    desiredFillPrice: BigInt!
+    trackingCode: String!
+}
+
+type PerpsV2MarketsFunctionSubmitDelayedOrder @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    sizeDelta: BigInt!
+    desiredTimeDelta: BigInt!
+    desiredFillPrice: BigInt!
+}
+
+type PerpsV2MarketsFunctionSubmitDelayedOrderWithTracking @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    sizeDelta: BigInt!
+    desiredTimeDelta: BigInt!
+    desiredFillPrice: BigInt!
+    trackingCode: String!
+}
+
+type PerpsV2MarketsFunctionSubmitOffchainDelayedOrder @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    sizeDelta: BigInt!
+    desiredFillPrice: BigInt!
+}
+
+type PerpsV2MarketsFunctionSubmitOffchainDelayedOrderWithT @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    sizeDelta: BigInt!
+    desiredFillPrice: BigInt!
+    trackingCode: String!
+}
+
+type PerpsV2MarketsFunctionTransferMargin @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marginDelta: BigInt!
+}
+
+type PerpsV2MarketsFunctionWithdrawAllMargin @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+}
+
+type PerpsV2MarketSettingsEventCacheUpdated @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    name: String!
+    destination: String!
+}
+
+type PerpsV2MarketSettingsEventKeeperLiquidationFeeUpdated @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    keeperFee: BigInt!
+}
+
+type PerpsV2MarketSettingsEventLiquidationBufferRatioUpdate @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    bps: BigInt!
+}
+
+type PerpsV2MarketSettingsEventLiquidationFeeRatioUpdated @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    bps: BigInt!
+}
+
+type PerpsV2MarketSettingsEventMaxKeeperFeeUpdated @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    sUsd: BigInt!
+}
+
+type PerpsV2MarketSettingsEventMinInitialMarginUpdated @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    minMargin: BigInt!
+}
+
+type PerpsV2MarketSettingsEventMinKeeperFeeUpdated @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    sUsd: BigInt!
+}
+
+type PerpsV2MarketSettingsEventOwnerChanged @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    oldOwner: String!
+    newOwner: String!
+}
+
+type PerpsV2MarketSettingsEventOwnerNominated @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    newOwner: String!
+}
+
+type PerpsV2MarketSettingsEventParameterUpdated @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    marketKey: String! @index
+    parameter: String! @index
+    value: BigInt!
+}
+
+type PerpsV2MarketSettingsEventParameterUpdatedBytes32 @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    marketKey: String! @index
+    parameter: String! @index
+    value: String!
+}
+
+type PerpsV2MarketSettingsFunctionAcceptOwnership @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+}
+
+type PerpsV2MarketSettingsFunctionNominateNewOwner @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    owner: String!
+}
+
+type PerpsV2MarketSettingsFunctionRebuildCache @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+}
+
+type PerpsV2MarketSettingsFunctionSetDelayedOrderConfirmWi @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    delayedOrderConfirmWindow: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetKeeperLiquidationFee @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    keeperFee: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetLiquidationBufferRatio @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    ratio: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetLiquidationFeeRatio @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    ratio: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetLiquidationPremiumMult @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    liquidationPremiumMultiplier: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMakerFee @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    makerFee: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMakerFeeDelayedOrder @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    makerFeeDelayedOrder: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMakerFeeOffchainDelay @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    makerFeeOffchainDelayedOrder: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMaxDelayTimeDelta @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    maxDelayTimeDelta: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMaxFundingVelocity @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    maxFundingVelocity: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMaxKeeperFee @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    sUsd: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMaxLeverage @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    maxLeverage: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMaxLiquidationDelta @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    maxLiquidationDelta: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMaxMarketValue @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    maxMarketValue: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMaxPd @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    maxPd: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMinDelayTimeDelta @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    minDelayTimeDelta: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMinInitialMargin @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    minMargin: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetMinKeeperFee @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    sUsd: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetNextPriceConfirmWindo @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    nextPriceConfirmWindow: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetOffchainDelayedOrderM0 @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    offchainDelayedOrderMaxAge: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetOffchainDelayedOrderM1 @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    offchainDelayedOrderMinAge: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetOffchainMarketKey @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    offchainMarketKey: String!
+}
+
+type PerpsV2MarketSettingsFunctionSetOffchainPriceDivergenc @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    offchainPriceDivergence: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetParameters @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    parameters: JSON!
+}
+
+type PerpsV2MarketSettingsFunctionSetSkewScale @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    skewScale: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetTakerFee @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    takerFee: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetTakerFeeDelayedOrder @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    takerFeeDelayedOrder: BigInt!
+}
+
+type PerpsV2MarketSettingsFunctionSetTakerFeeOffchainDelay @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKey: String!
+    takerFeeOffchainDelayedOrder: BigInt!
+}
+
+type FuturesMarketMangerEventCacheUpdated @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    name: String!
+    destination: String!
+}
+
+type FuturesMarketMangerEventEndorsedAddressAdded @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    endorsedAddress: String!
+}
+
+type FuturesMarketMangerEventEndorsedAddressRemoved @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    endorsedAddress: String!
+}
+
+type FuturesMarketMangerEventMarketAdded @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    market: String!
+    asset: String! @index
+    marketKey: String! @index
+}
+
+type FuturesMarketMangerEventMarketRemoved @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    market: String!
+    asset: String! @index
+    marketKey: String! @index
+}
+
+type FuturesMarketMangerEventOwnerChanged @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    oldOwner: String!
+    newOwner: String!
+}
+
+type FuturesMarketMangerEventOwnerNominated @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    newOwner: String!
+}
+
+type FuturesMarketMangerFunctionAcceptOwnership @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+}
+
+type FuturesMarketMangerFunctionAddEndorsedAddresses @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    addresses: JSON!
+}
+
+type FuturesMarketMangerFunctionAddMarkets @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketsToAdd: JSON!
+}
+
+type FuturesMarketMangerFunctionAddProxiedMarkets @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketsToAdd: JSON!
+}
+
+type FuturesMarketMangerFunctionBurnSusd @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    account: String!
+    amount: BigInt!
+}
+
+type FuturesMarketMangerFunctionIssueSusd @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    account: String!
+    amount: BigInt!
+}
+
+type FuturesMarketMangerFunctionNominateNewOwner @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    owner: String!
+}
+
+type FuturesMarketMangerFunctionPayFee0 @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    amount: BigInt!
+    trackingCode: String!
+}
+
+type FuturesMarketMangerFunctionPayFee1 @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    amount: BigInt!
+}
+
+type FuturesMarketMangerFunctionRebuildCache @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+}
+
+type FuturesMarketMangerFunctionRemoveEndorsedAddresses @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    addresses: JSON!
+}
+
+type FuturesMarketMangerFunctionRemoveMarkets @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketsToRemove: JSON!
+}
+
+type FuturesMarketMangerFunctionRemoveMarketsByKey @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketKeysToRemove: JSON!
+}
+
+type FuturesMarketMangerFunctionUpdateMarketsImplementations @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    functionName: String! @index
+    functionValue: BigInt
+    functionSuccess: Boolean @index
+    marketsToUpdate: JSON!
+}
+

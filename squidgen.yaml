@@ -5,15 +5,21 @@ contracts:
   - name: PerpsV2Markets
     address: "0x2B3bb4c683BFc5239B029131EEf3B1d214478d93"
     abi: "./abi/PerpsV2Markets.json"
+    range:
+      from: 52456701
     functions: true
     events: true
   - name: PerpsV2MarketSettings
     address: "0x649F44CAC3276557D03223Dbf6395Af65b11c11c"
     abi: "./abi/PerpsV2MarketSettings.json"
+    range:
+      from: 52456606
     functions: true
     events: true
   - name: FuturesMarketManger
     address: "0xd30bdFd7e7a65fE109D5dE1D4e95F3B800FB7463"
     abi: "./abi/FuturesMarketManager.json"
+    range:
+      from: 86524190
     functions: true
     events: true

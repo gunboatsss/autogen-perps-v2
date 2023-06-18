@@ -9,6 +9,18 @@ const processor = new EvmBatchProcessor()
 processor.setDataSource({
     archive: lookupArchive('optimism-mainnet', {type: 'EVM'}),
 })
+const perpsV2MarketSettingsAddresses = [
+    "0xd442Dc2Ac1f3cA1C86C8329246e47Ca0C91D0471",
+    "0x09793Aad1518B8d8CC72FDd356479E3CBa7B4Ad1",
+    "0x649F44CAC3276557D03223Dbf6395Af65b11c11c"
+]
+
+processor.setBlockRange(
+    {
+        from: 52456606
+    }
+)
+
 processor.addLog([], {
     filter: [
         [
@@ -67,7 +79,7 @@ processor.addTransaction([], {
         },
     } as const,
 })
-processor.addLog(perpsV2MarketSettings.address, {
+processor.addLog(perpsV2MarketSettingsAddresses, {
     filter: [
         [
             perpsV2MarketSettings.spec.events['CacheUpdated'].topic,
@@ -94,7 +106,7 @@ processor.addLog(perpsV2MarketSettings.address, {
         },
     } as const,
 })
-processor.addTransaction(perpsV2MarketSettings.address, {
+processor.addTransaction(perpsV2MarketSettingsAddresses, {
     sighash: [
         perpsV2MarketSettings.spec.functions['acceptOwnership'].sighash,
         perpsV2MarketSettings.spec.functions['nominateNewOwner'].sighash,

@@ -99,7 +99,22 @@ type PerpsV2MarketsEventPositionFlagged @entity {
     flagger: String!
     timestamp: BigInt!
 }
-
+type PositionLiquidated @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    id0: BigInt!
+    account: String!
+    liquidator: String!
+    size: BigInt!
+    price: BigInt!
+    flaggerFee: BigInt!
+    liquidatorFee: BigInt!
+    stakersFee: BigInt!
+}
 type PerpsV2MarketsEventPositionLiquidated0 @entity {
     id: ID!
     blockNumber: Int! @index
@@ -165,6 +180,24 @@ type PerpsV2MarketsEventPositionModified1 @entity {
     lastPrice: BigInt!
     fundingIndex: BigInt!
     fee: BigInt!
+}
+
+type PositionModified @entity {
+    id: ID!
+    blockNumber: Int! @index
+    blockTimestamp: DateTime! @index
+    transactionHash: String! @index
+    contract: String! @index
+    eventName: String! @index
+    id0: BigInt! @index
+    account: String! @index
+    margin: BigInt!
+    size: BigInt!
+    tradeSize: BigInt!
+    lastPrice: BigInt!
+    fundingIndex: BigInt!
+    fee: BigInt!
+    skew: BigInt
 }
 
 type PerpsV2MarketsFunctionCancelDelayedOrder @entity {

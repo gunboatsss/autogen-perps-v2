@@ -3,7 +3,7 @@ import {LogItem, TransactionItem} from '@subsquid/evm-processor/lib/interfaces/d
 import {toJSON} from '@subsquid/util-internal-json'
 import {Store} from '../db'
 import {EntityBuffer} from '../entityBuffer'
-import {PerpsV2MarketsEventDelayedOrderRemoved, PerpsV2MarketsEventDelayedOrderSubmitted, PerpsV2MarketsEventFundingRecomputed, PerpsV2MarketsEventMarginTransferred, PerpsV2MarketsEventPerpsTracking, PerpsV2MarketsEventPositionFlagged, PerpsV2MarketsEventPositionLiquidated0, PerpsV2MarketsEventPositionLiquidated1, PerpsV2MarketsEventPositionModified0, PerpsV2MarketsEventPositionModified1, PerpsV2MarketsFunctionCancelDelayedOrder, PerpsV2MarketsFunctionCancelOffchainDelayedOrder, PerpsV2MarketsFunctionClosePosition, PerpsV2MarketsFunctionClosePositionWithTracking, PerpsV2MarketsFunctionExecuteDelayedOrder, PerpsV2MarketsFunctionExecuteOffchainDelayedOrder, PerpsV2MarketsFunctionFlagPosition, PerpsV2MarketsFunctionForceLiquidatePosition, PerpsV2MarketsFunctionLiquidatePosition, PerpsV2MarketsFunctionModifyPosition, PerpsV2MarketsFunctionModifyPositionWithTracking, PerpsV2MarketsFunctionRecomputeFunding, PerpsV2MarketsFunctionSubmitCloseDelayedOrderWithTrac, PerpsV2MarketsFunctionSubmitCloseOffchainDelayedOrder, PerpsV2MarketsFunctionSubmitDelayedOrder, PerpsV2MarketsFunctionSubmitDelayedOrderWithTracking, PerpsV2MarketsFunctionSubmitOffchainDelayedOrder, PerpsV2MarketsFunctionSubmitOffchainDelayedOrderWithT, PerpsV2MarketsFunctionTransferMargin, PerpsV2MarketsFunctionWithdrawAllMargin} from '../model'
+import {PerpsV2MarketsEventDelayedOrderRemoved, PerpsV2MarketsEventDelayedOrderSubmitted, PerpsV2MarketsEventFundingRecomputed, PerpsV2MarketsEventMarginTransferred, PerpsV2MarketsEventPerpsTracking, PerpsV2MarketsEventPositionFlagged, PerpsV2MarketsEventPositionLiquidated0, PerpsV2MarketsEventPositionLiquidated1, PerpsV2MarketsEventPositionModified0, PerpsV2MarketsEventPositionModified1, PerpsV2MarketsFunctionCancelDelayedOrder, PerpsV2MarketsFunctionCancelOffchainDelayedOrder, PerpsV2MarketsFunctionClosePosition, PerpsV2MarketsFunctionClosePositionWithTracking, PerpsV2MarketsFunctionExecuteDelayedOrder, PerpsV2MarketsFunctionExecuteOffchainDelayedOrder, PerpsV2MarketsFunctionFlagPosition, PerpsV2MarketsFunctionForceLiquidatePosition, PerpsV2MarketsFunctionLiquidatePosition, PerpsV2MarketsFunctionModifyPosition, PerpsV2MarketsFunctionModifyPositionWithTracking, PerpsV2MarketsFunctionRecomputeFunding, PerpsV2MarketsFunctionSubmitCloseDelayedOrderWithTrac, PerpsV2MarketsFunctionSubmitCloseOffchainDelayedOrder, PerpsV2MarketsFunctionSubmitDelayedOrder, PerpsV2MarketsFunctionSubmitDelayedOrderWithTracking, PerpsV2MarketsFunctionSubmitOffchainDelayedOrder, PerpsV2MarketsFunctionSubmitOffchainDelayedOrderWithT, PerpsV2MarketsFunctionTransferMargin, PerpsV2MarketsFunctionWithdrawAllMargin, PositionLiquidated, PositionModified} from '../model'
 import * as spec from '../abi/PerpsV2Markets'
 import {normalize} from '../util'
 
@@ -145,6 +145,24 @@ function parseEvent(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: Eve
             case spec.events['PositionLiquidated(uint256,address,address,int256,uint256,uint256,uint256,uint256)'].topic: {
                 let e = normalize(spec.events['PositionLiquidated(uint256,address,address,int256,uint256,uint256,uint256,uint256)'].decode(item.evmLog))
                 EntityBuffer.add(
+                    new PositionLiquidated({
+                        id: item.evmLog.id,
+                        blockNumber: block.height,
+                        blockTimestamp: new Date(block.timestamp),
+                        transactionHash: item.transaction.hash,
+                        contract: item.address,
+                        eventName: 'PositionLiquidated(uint256,address,address,int256,uint256,uint256,uint256,uint256)',
+                        id0: e[0],
+                        account: e[1],
+                        liquidator: e[2],
+                        size: e[3],
+                        price: e[4],
+                        flaggerFee: e[5],
+                        liquidatorFee: e[6],
+                        stakersFee: e[7],
+                    })
+                )
+                EntityBuffer.add(
                     new PerpsV2MarketsEventPositionLiquidated0({
                         id: item.evmLog.id,
                         blockNumber: block.height,
@@ -167,6 +185,24 @@ function parseEvent(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: Eve
             case spec.events['PositionLiquidated(uint256,address,address,int256,uint256,uint256)'].topic: {
                 let e = normalize(spec.events['PositionLiquidated(uint256,address,address,int256,uint256,uint256)'].decode(item.evmLog))
                 EntityBuffer.add(
+                    new PositionLiquidated({
+                        id: item.evmLog.id,
+                        blockNumber: block.height,
+                        blockTimestamp: new Date(block.timestamp),
+                        transactionHash: item.transaction.hash,
+                        contract: item.address,
+                        eventName: 'PositionLiquidated(uint256,address,address,int256,uint256,uint256)',
+                        id0: e[0],
+                        account: e[1],
+                        liquidator: e[2],
+                        size: e[3],
+                        price: e[4],
+                        flaggerFee: BigInt(0),
+                        liquidatorFee: e[5],
+                        stakersFee: BigInt(0) //TODO: GET ACTUAL SUSD TO FEE POOL
+                    })
+                )
+                EntityBuffer.add(
                     new PerpsV2MarketsEventPositionLiquidated1({
                         id: item.evmLog.id,
                         blockNumber: block.height,
@@ -186,6 +222,25 @@ function parseEvent(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: Eve
             }
             case spec.events['PositionModified(uint256,address,uint256,int256,int256,uint256,uint256,uint256,int256)'].topic: {
                 let e = normalize(spec.events['PositionModified(uint256,address,uint256,int256,int256,uint256,uint256,uint256,int256)'].decode(item.evmLog))
+                EntityBuffer.add(
+                    new PositionModified({
+                        id: item.evmLog.id,
+                        blockNumber: block.height,
+                        blockTimestamp: new Date(block.timestamp),
+                        transactionHash: item.transaction.hash,
+                        contract: item.address,
+                        eventName: 'PositionModified(uint256,address,uint256,int256,int256,uint256,uint256,uint256,int256)',
+                        id0: e[0],
+                        account: e[1],
+                        margin: e[2],
+                        size: e[3],
+                        tradeSize: e[4],
+                        lastPrice: e[5],
+                        fundingIndex: e[6],
+                        fee: e[7],
+                        skew: e[8],
+                    })
+                )
                 EntityBuffer.add(
                     new PerpsV2MarketsEventPositionModified0({
                         id: item.evmLog.id,
@@ -209,6 +264,24 @@ function parseEvent(ctx: CommonHandlerContext<Store>, block: EvmBlock, item: Eve
             }
             case spec.events['PositionModified(uint256,address,uint256,int256,int256,uint256,uint256,uint256)'].topic: {
                 let e = normalize(spec.events['PositionModified(uint256,address,uint256,int256,int256,uint256,uint256,uint256)'].decode(item.evmLog))
+                EntityBuffer.add(
+                    new PositionModified({
+                        id: item.evmLog.id,
+                        blockNumber: block.height,
+                        blockTimestamp: new Date(block.timestamp),
+                        transactionHash: item.transaction.hash,
+                        contract: item.address,
+                        eventName: 'PositionModified(uint256,address,uint256,int256,int256,uint256,uint256,uint256)',
+                        id0: e[0],
+                        account: e[1],
+                        margin: e[2],
+                        size: e[3],
+                        tradeSize: e[4],
+                        lastPrice: e[5],
+                        fundingIndex: e[6],
+                        fee: e[7],
+                    })
+                )
                 EntityBuffer.add(
                     new PerpsV2MarketsEventPositionModified1({
                         id: item.evmLog.id,
